@@ -16,17 +16,20 @@ top_points_output = list(map(lambda x: f'"{x[0]}" with {x[1]} points.', top_poin
 
 # ข้อ 2: แสดงตัวอักษรที่มีจำนวนมากที่สุด 4 อันดับแรกพร้อมจำนวน
 top_amounts = sorted(data, key=lambda x: x[2], reverse=True)[:4]
-top_amounts_output = list(map(lambda x: f"Letter: {x[0]}, Amount: {x[2]}", top_amounts))
+top_amounts_output = list(map(lambda x: f'"{x[0]}" with {x[2]} pieces.', top_amounts))
 
 # ข้อ 3: แสดงตัวอักษรที่มีสัดส่วนต่ำสุด 4 อันดับแรกพร้อมสัดส่วน
 low_ratios = sorted(data, key=lambda x: x[3])[:4]
-low_ratios_output = list(map(lambda x: f"Letter: {x[0]}, Ratio: {x[3]}%", low_ratios))
+low_ratios_output = list(map(lambda x: f'"{x[0]}" with {x[3]} percent.', low_ratios))
 
-# ฟังก์ชันเพื่อจัดรูปแบบการแสดงผลที่มีเลขลำดับ
+# ฟังก์ชันเพื่อจัดรูปแบบการแสดงผลที่มีเลขลำดับและจัดตรงกลาง
 def format_output(title, items):
-    return f"{title}\n" + "\n".join([f"{i+1}) {item}" for i, item in enumerate(items)])
+    max_width = max(len(title), max(len(f"{i+1}) {item}") for i, item in enumerate(items)))
+    centered_title = title.center(max_width)
+    centered_items = "\n".join([f"{i+1}) {item}".center(max_width) for i, item in enumerate(items)])
+    return f"{centered_title}\n{centered_items}"
 
 # แสดงผลลัพธ์พร้อมเลขข้อและลำดับ
-print(format_output("The highest ", top_points_output))
-print(format_output("ตัวอักษรที่มีจำนวนมากที่สุด 4 อันดับแรก", top_amounts_output))
-print(format_output("ตัวอักษรที่มีสัดส่วนต่ำสุด 4 อันดับแรก", low_ratios_output))
+print(format_output("The highest point in the scrabble game: ", top_points_output))
+print(format_output("The highest amount in the scrabble game:", top_amounts_output))
+print(format_output("The lowest ratio in the scrabble game:", low_ratios_output))
