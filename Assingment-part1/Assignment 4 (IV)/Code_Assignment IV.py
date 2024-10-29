@@ -7,7 +7,7 @@ s3 = "Professionally, Python is great for backend web development, data analysis
 total_characters = len(s1) + len(s2) + len(s3) # หาจำนวนตัวอักษรทั้งหมด
 print("Total characters in string s1, s2 and s3 are", total_characters ,"characters") 
 
-total_words = len(s1.split()) + len(s2.split()) + len(s3.split()) # หาจำนวนคำทั้งหมด
+total_words = len(s1.split()) + len(s2.split()) + len(s3.split()) # หาจำนวนคำทั้งหมดด้วยการใช้ split()
 print("Total words in string s1, s2 and s3 are", total_words, "words")
 
 hidden_code_s1 = s1[-20] + s1[-3] + s1[-81] # หารหัสลับจากตัวอักษรที่กำหนด
