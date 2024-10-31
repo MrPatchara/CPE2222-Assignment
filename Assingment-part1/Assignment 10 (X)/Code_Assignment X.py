@@ -1,3 +1,4 @@
+# Assignment 10 (X) - Code Assignment X
 import re # Regular Expression
 
 def check_password(password):
@@ -10,7 +11,7 @@ def check_password(password):
         return "!!!ERROR!!! The password must not contain more 16 characters"
 
     # ตรวจสอบว่ามีอักษรตัวพิมพ์ใหญ่
-    if not re.search(r"[A-Z]", password):
+    if not re.search(r"[A-Z]", password): # ตรวจสอบว่ามีอักษรตัวพิมพ์ใหญ่ด้วยการใช้ Regular Expression
         return "!!!ERROR!!! The password must contain at least a capital letter"
 
     # ตรวจสอบว่ามีอักษรตัวพิมพ์เล็ก
@@ -19,7 +20,7 @@ def check_password(password):
 
     # ตรวจสอบว่ามีตัวเลข
     if not re.search(r"[0-9]", password):
-        return "!!!ERROR!!! The password must contain at least a number"
+        return "!!!ERROR!!! The password must contain at least a number" 
 
     # ตรวจสอบรหัสผ่านที่ถูกต้อง
     if password == "Python2021":

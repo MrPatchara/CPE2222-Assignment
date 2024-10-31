@@ -1,9 +1,11 @@
-import random
+# Assignment XIII: Guessing Game
+import random #import module random
 
 def guessing_game():
     print("***** Welcome to the game of guessing number *****")
-    #target = random.randint(1, 99)  #สุ่มตัวเลขจาก 1-99
-    target = 50
+    target = random.randint(1, 99)  #สุ่มตัวเลขจาก 1-99
+    #target = 50 #ใช้เวลาจะทดสอบให้ถูก
+    
     attempts = 5 #จำนวนครั้งในการทาย
     low, high = 1, 99 #กำหนดค่าต่ำสุดและสูงสุด
 

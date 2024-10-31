@@ -1,6 +1,9 @@
+# Assignment IX: Drawing the square rectangular by "#"
 print("-"*9,'Drawing the square rectangular by "#"',"-"*9)
 print('[To quit this program by pressing "0"]')
 print("-"*57)
+
+# สร้างลูปเพื่อให้ผู้ใช้สามารถใส่ขนาดของรูปทรงได้
 while True:
     size = int(input("Please enter the size:")) 
     
