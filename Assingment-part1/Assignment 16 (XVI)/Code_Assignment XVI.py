@@ -27,7 +27,9 @@ while True:
     if 1 <= index <= 100:
         # แสดงข้อความว่า "The area of {ชื่อรูปทรง} is {พื้นที่ของรูปทรง}" โดยใช้ f-string
         area = shapes[shape][index] # หาค่าพื้นที่ของรูปทรงโดยใช้ค่า index ที่ผู้ใช้ใส่
-        print(f"The area of {shape.upper()} is {area}") 
+        print("-" * 50) 
+        print(f"The area of {shape.upper()} is {area}")
+        print("-" * 50) 
     else:
         print("!!! The key is out of scope !!!")
         break

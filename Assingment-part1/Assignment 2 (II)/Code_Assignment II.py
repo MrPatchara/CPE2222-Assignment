@@ -1,6 +1,5 @@
 # Assignment II: Basic Math Formulas
 import math #ใช้ไลบรารี math 
-
 #ฟังก์ชันคำนวณพื้นที่ของสามเหลี่ยม
 def area_of_triangle():
     print(f"{'Area of Triangle':^50}")
@@ -8,8 +7,8 @@ def area_of_triangle():
     base = float(input("Enter Base: "))
     height = float(input("Enter Height: "))
     area = 0.5 * base * height
-    print(f"The area is {area:.2f}")
-    #print(f"The area is {area}")  #optional ถ้าต้องการให้แสดงทศนิยม 1 ตำแหน่ง
+    #print(f"The area is {area:.2f}")
+    print(f"The area is {area}")  #optional ถ้าต้องการให้แสดงทศนิยม 1 ตำแหน่ง
     
 # ฟังก์ชันคำนวณพื้นที่ของสี่เหลี่ยมผืนผ้า
 def area_of_rectangle():
@@ -19,17 +18,18 @@ def area_of_rectangle():
     width = float(input("Enter Width: "))
     area = length * width
     #ปริ้นค่าพื้นที่ ทศนิยม 2 ตำแหน่ง
-    print(f"The area is {area:.2f}")
-
-#ฟังก์ชันหาค่าด้านยาวที่สุดของสามเหลี่ยมมุมฉาก
+    #print(f"The area is {area:.2f}")
+    print(f"The area is {area}")
+    
 def longest_side_of_right_triangle():
     print(f"{'The Longest Size of Right Triangle':^50}") 
     print("-"*50)
     a = float(input("Enter length of the 1st side: "))
     b = float(input("Enter length of the 2nd side: "))
     c = math.sqrt(a**2 + b**2) #ใช้ math.sqrt เพื่อคำนวณรากที่สองของผลรวมของ a กำลังสอง และ b กำลังสอง
-    print(f"The length of the longest size is {c:.2f}")
-  
+    #print(f"The length of the longest size is {c:.2f}")
+    print(f"The area is {c}")
+    
 #ฟังก์ชันคำนวณสูตรกำลังสอง
 def quadratic_formula():
     print(f"{'The Solution of Quadratic Formula':^50}") #ใช้ f-string ในการปริ้นหัวข้อเพื่อให้อยู่ตรงกลาง
@@ -58,8 +58,8 @@ def distance_between_points():
     x2 = float(input("Enter x of the 2nd point: "))
     y2 = float(input("Enter y of the 2nd point: "))
     distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-    print(f"The distance is {distance:.2f}")
-
+    #print(f"The distance is {distance:.2f}")
+    print(f"The distance is {distance}")    
 
 #เรียกใช้งานฟังก์ชันทั้งหมดและแสดงหัวข้อหลัก "Basic Math Formulas" โดยจัดให้อยู่กลางบรรทัด
 print(f"{'Basic Math Formulas':^50}") #ใช้ f-string ในการปริ้นหัวข้อเพื่อให้อยู่ตรงกลาง
