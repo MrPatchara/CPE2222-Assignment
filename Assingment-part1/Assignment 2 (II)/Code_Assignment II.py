@@ -1,5 +1,5 @@
 # Assignment II: Basic Math Formulas
-import math #ใช้ไลบรารี math เพื่อใช้ฟังก์ชันทางคณิตศาสตร์ เช่น การถอดรากที่สอง (sqrt) ซึ่งจำเป็นในบางฟังก์ชัน
+import math #ใช้ไลบรารี math 
 
 #ฟังก์ชันคำนวณพื้นที่ของสามเหลี่ยม
 def area_of_triangle():
@@ -10,15 +10,10 @@ def area_of_triangle():
     area = 0.5 * base * height
     print(f"The area is {area:.2f}")
     #print(f"The area is {area}")  #optional ถ้าต้องการให้แสดงทศนิยม 1 ตำแหน่ง
-
-    #ปริ้นหัวข้อ "Area of Triangle" โดยจัดให้อยู่กลางบรรทัด
-    #รับค่าฐาน (base) และความสูง (height) ของสามเหลี่ยมจากผู้ใช้
-    #คำนวณพื้นที่ของสามเหลี่ยมโดยใช้สูตร 
-    #แสดงผลลัพธ์พื้นที่ด้วยทศนิยม 2 ตำแหน่ง
     
 # ฟังก์ชันคำนวณพื้นที่ของสี่เหลี่ยมผืนผ้า
 def area_of_rectangle():
-    print(f"{'Area of Rectangle':^50}") #ใช้ f-string ในการปริ้นหัวข้อเพื่อให้อยู่ตรงกลาง
+    print(f"{'Area of Rectangle':^50}") 
     print("-"*50)
     length = float(input("Enter Length: "))
     width = float(input("Enter Width: "))
@@ -28,7 +23,7 @@ def area_of_rectangle():
 
 #ฟังก์ชันหาค่าด้านยาวที่สุดของสามเหลี่ยมมุมฉาก
 def longest_side_of_right_triangle():
-    print(f"{'The Longest Size of Right Triangle':^50}") #ใช้ f-string ในการปริ้นหัวข้อเพื่อให้อยู่ตรงกลาง
+    print(f"{'The Longest Size of Right Triangle':^50}") 
     print("-"*50)
     a = float(input("Enter length of the 1st side: "))
     b = float(input("Enter length of the 2nd side: "))
@@ -52,12 +47,6 @@ def quadratic_formula():
 
     print(f"The 1st solution is x = {x1}")
     print(f"The 2nd solution is x = {x2}")
-#ปริ้นหัวข้อ "The Solution of Quadratic Formula" โดยจัดให้อยู่กลางบรรทัด
-#รับค่าคงที่ (c), สัมประสิทธิ์ของตัวแปรลำดับที่หนึ่ง (b), และสัมประสิทธิ์ของตัวแปรลำดับที่สอง (a)
-#คำนวณค่า discriminant (ส่วนในรูทของสูตรกำลังสอง) โดยใช้สูตร 
-#ถ้า discriminant มีค่าน้อยกว่า 0 ให้ใช้เลขเชิงซ้อนแทน โดยใช้ฟังก์ชัน complex()
-#คำนวณค่ารากที่ 1 (x1) และรากที่ 2 (x2) จากสูตรกำลังสอง
-#แสดงผลลัพธ์รากที่ 1 และรากที่ 2
 
 #ฟังก์ชันคำนวณระยะห่างระหว่าง 2 จุด
 def distance_between_points():
