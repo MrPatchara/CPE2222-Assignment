@@ -9,7 +9,7 @@ def calculate():
             base = float(base_entry.get())
             height = float(height_entry.get())
             area = 0.5 * base * height
-            result_text = f"The area of triangle with base {base} and height {height} is {area:.2f}"
+            result_text = f"The area of triangle with base of {base} and height of {height} is {area:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Base and Height.")
     elif formula_var.get() == "rectangle":
@@ -17,7 +17,7 @@ def calculate():
             length = float(length_entry.get())
             width = float(width_entry.get())
             area = length * width
-            result_text = f"The area of rectangle with length {length} and width {width} is {area:.2f}"
+            result_text = f"The area of rectangle with length of {length} and width of {width} is {area:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Length and Width.")
     elif formula_var.get() == "pythagorean":
@@ -25,7 +25,7 @@ def calculate():
             a = float(a_entry.get())
             b = float(b_entry.get())
             hypotenuse = math.sqrt(a**2 + b**2)
-            result_text = f"The hypotenuse of right triangle with sides {a} and {b} is {hypotenuse:.2f}"
+            result_text = f"The longest size of right triangle with ({a},{b}) is {hypotenuse:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Side a and Side b.")
     result_label.config(text=result_text)
