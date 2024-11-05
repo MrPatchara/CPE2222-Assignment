@@ -9,7 +9,7 @@ def calculate():
             base = float(base_entry.get()) # รับค่าจาก base_entry และแปลงเป็น float
             height = float(height_entry.get()) # รับค่าจาก height_entry และแปลงเป็น float
             area = 0.5 * base * height
-            result_text = f"The area of triangle with base of {base} and height of {height} is {area:.1f}"
+            result_text = f"The area of triangle with base of {base:g} and height of {height:g} is {area:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Base and Height.")
     elif formula_var.get() == "rectangle": # ถ้าเลือกสูตรสี่เหลี่ยม
@@ -17,7 +17,7 @@ def calculate():
             length = float(length_entry.get())
             width = float(width_entry.get())
             area = length * width 
-            result_text = f"The area of rectangle with length of {length} and width of {width} is {area:.1f}"
+            result_text = f"The area of rectangle with length of {length:g} and width of {width:g} is {area:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Length and Width.")
     elif formula_var.get() == "pythagorean": # ถ้าเลือกสูตรพีทาโกรัส
@@ -25,7 +25,7 @@ def calculate():
             a = float(a_entry.get())
             b = float(b_entry.get())
             hypotenuse = math.sqrt(a**2 + b**2)
-            result_text = f"The longest size of right triangle with ({a},{b}) is {hypotenuse:.1f}"
+            result_text = f"The longest size of right triangle with ({a:g},{b:g}) is {hypotenuse:.1f}"
         except ValueError:
             messagebox.showerror("Error", "Please enter valid numbers for Side a and Side b.")
     result_label.config(text=result_text) # แสดงผลลัพธ์
