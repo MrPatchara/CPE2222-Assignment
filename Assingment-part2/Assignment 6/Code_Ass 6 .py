@@ -13,17 +13,17 @@ def load_custom_csv(file_name):
 file_names = ['1.csv', '2.csv', '3.csv', '4.csv', '5.csv']
 D = np.array([load_custom_csv(file) for file in file_names])
 
-# คำนวณ X เป็นค่าเฉลี่ยของ D ตามแกนที่ 0
-X = np.mean(D, axis=0)
+# คำนวณ X เป็นค่าเฉลี่ยของ D ตามแกนที่ 2
+X = np.mean(D, axis=2)
 
-# คำนวณ Y เป็นค่าเบี่ยงเบนมาตรฐานของ D ตามแกนที่ 1 และแกนที่ 2
-Y = np.std(D, axis=(1, 2)).reshape(100, 1)
+# คำนวณ Y เป็นค่าเบี่ยงเบนมาตรฐานของ D ตามแกนที่ 0
+Y = np.std(D, axis=0).mean(axis=1, keepdims=True)
 
 # คำนวณ A เป็นผลรวมของ D ตามแกนที่ 1 และ 2
 A = np.sum(D, axis=(1, 2)).reshape(1, 5)
 
 # ตรวจสอบขนาดของ X, Y และ A ว่าตรงตามที่กำหนด
-print("X shape:", X.shape)  # ควรเป็น (100, 5)
+print("X shape:", X.shape)  # ควรเป็น (5, 100)
 print("Y shape:", Y.shape)  # ควรเป็น (100, 1)
 print("A shape:", A.shape)  # ควรเป็น (1, 5)
 
@@ -31,10 +31,10 @@ print("A shape:", A.shape)  # ควรเป็น (1, 5)
 m = X.size
 
 # คำนวณค่า J ตามสูตร
-J = (1 / (2 * m)) * np.sum((A @ X - Y)**2)
+J = (1 / (2 * m)) * np.sum((A @ X - Y.T)**2)
 
 # คำนวณค่า K ตามสูตร
-K = (1 / m) * (np.sum((A @ X)**2) - np.sum(Y * X))
+K = (1 / m) * (np.sum((A @ X)**2) - np.sum(Y.T * X))
 
 # แสดงผลลัพธ์
 print("X[0,:] =", X[0, :])
