@@ -32,11 +32,11 @@ class BullsAndCowsGame:
         for i, entry in enumerate(self.guess_entries): # วางช่องใส่ตัวเลขในเฟรม
             entry.grid(row=0, column=i+1) 
 
-        # ปุ่ม Submit เพื่อยืนยันการทาย
+        # ปุ่ม Submit 
         submit_button = tk.Button(frame, text="Submit", command=self.check_guess)
         submit_button.grid(row=0, column=5, padx=10) 
 
-        # ปุ่ม Show Answer เพื่อแสดงเฉลย
+        # ปุ่ม Show Answer 
         answer_button = tk.Button(frame, text="Show Answer", command=self.show_answer)
         answer_button.grid(row=1, column=0, columnspan=6, pady=5)
 
@@ -77,10 +77,8 @@ class BullsAndCowsGame:
         return bulls, cows
 
     def show_answer(self):
-        # แสดงเฉลยให้ผู้ใช้
         messagebox.showinfo("Answer", f"The correct number is: {self.target_number}")
 
-# Main part of the program
 if __name__ == "__main__":
     root = tk.Tk()
     game = BullsAndCowsGame(root)
