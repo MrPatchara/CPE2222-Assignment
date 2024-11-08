@@ -3,7 +3,7 @@ import os
 from tkinter import messagebox
 
 
-def toggle_option_menu(shape):
+def toggle_option_menu(shape): # ฟังก์ชันสำหรับเปิด/ปิด OptionMenu ของรูปทรง
     if shape == "Rectangle":
         if rect_var.get():
             rect_size_menu.grid(row=1, column=1, padx=5, pady=5)
@@ -26,7 +26,7 @@ def toggle_option_menu(shape):
             circ_size_menu.grid_remove()
             circ_color_menu.grid_remove()
 
-def draw_shapes():
+def draw_shapes(): # ฟังก์ชันสำหรับวาดรูปทรง
     shapes = []
     if rect_var.get():
         shapes.append(("Rectangle", rect_size.get(), rect_color.get()))
@@ -41,22 +41,22 @@ def draw_shapes():
 
     result_win = tk.Toplevel(root)
     result_win.title("RESULT")
-    # Set the window icon at the top of the program window
+   
     img_path = os.path.join(os.path.dirname(__file__), 'logo.png')
     img = tk.PhotoImage(file=img_path)
     result_win.tk.call('wm', 'iconphoto', result_win._w, img)
 
-    # Create canvas with dynamic size
-    canvas_width = 20  # initial padding
-    canvas_height = 20  # initial padding
+    # คำนวณขนาดของ canvas โดยพิจารณาขนาดของรูปทรงแต่ละรูป
+    canvas_width = 20  # ความกว้างเริ่มต้นของ 
+    canvas_height = 20  # ความสูงเริ่มต้นของ 
     shape_positions = []
 
-    for shape, size, color in shapes:
+    for shape, size, color in shapes: # วนลูปเพื่อคำนวณขนาดของ canvas โดยพิจารณาขนาดของรูปทรงแต่ละรูป
         if shape == "Rectangle":
             w, h = map(int, size.split("x"))
             shape_positions.append((canvas_width, 20, w, h, color, shape))
-            canvas_width += w + 20  # add shape width + gap
-            canvas_height = max(canvas_height, h + 40)  # add padding
+            canvas_width += w + 20  # เพิ่มความกว้างของ canvas โดยเพิ่มความกว้างของรูปทรงและระยะห่าง 20
+            canvas_height = max(canvas_height, h + 40)  # 
 
         elif shape == "Triangle":
             w, h = map(int, size.split("x"))
@@ -73,14 +73,13 @@ def draw_shapes():
     canvas = tk.Canvas(result_win, width=canvas_width, height=canvas_height, bg="white")
     canvas.pack(padx=20, pady=20)
 
-    # Draw each shape on the canvas
+    # วนลูปเพื่อวาดรูปทรงลงบน canvas
     for x, y, w, h, color, shape_type in shape_positions:
         if color == "":
-            color = "black"  # default color if none is selected
+            color = "black"  # ค่าสีเริ่มต้นของรูปทรง
         if shape_type == "Rectangle":
             canvas.create_rectangle(x, y, x + w, y + h, outline="black", fill=color)
         elif shape_type == "Triangle":
-            # Draw a right triangle with a right angle at the top right corner
             canvas.create_polygon(x, y, x + w, y, x + w, y + h, outline="black", fill=color, width=1)
         elif shape_type == "Circle":
             canvas.create_oval(x - w, y - h, x + w, y + h, outline="black", fill=color)
@@ -94,12 +93,12 @@ root = tk.Tk()
 root.title("Canvas Drawing")
 root.geometry("350x250")
 root.config(padx=5, pady=5)
-# Set the window icon at the top of the program window
+
 img_path = os.path.join(os.path.dirname(__file__), 'logo.png')
 img = tk.PhotoImage(file=img_path)
 root.tk.call('wm', 'iconphoto', root._w, img)
 
-# Variables
+# ตัวแปรสำหรับเก็บค่าของตัวเลือกการวาดรูปทรง
 rect_var = tk.BooleanVar()
 tri_var = tk.BooleanVar()
 circ_var = tk.BooleanVar()
@@ -111,11 +110,11 @@ rect_color = tk.StringVar(value="black")
 tri_color = tk.StringVar(value="black")
 circ_color = tk.StringVar(value="black")
 
-# Label Frame for Drawing Settings
+# เฟรมสำหรับเก็บตัวเลือกของการวาดรูปทรง
 settings_frame = tk.LabelFrame(root, text="Drawing Setting", padx=5, pady=5)
 settings_frame.pack(padx=10, pady=10)
 
-# Checkbox and options for Rectangle
+# Checkbox ของ Rectangle
 rect_checkbox = tk.Checkbutton(settings_frame, text="Rectangle", variable=rect_var, command=lambda: toggle_option_menu("Rectangle"))
 rect_checkbox.grid(row=1, column=0, sticky="w", padx=5, pady=5)
 rect_size_menu = tk.OptionMenu(settings_frame, rect_size, "50x50", "100x50", "50x100")
@@ -125,7 +124,7 @@ rect_color_menu.grid(row=1, column=2, padx=5, pady=5)
 rect_size_menu.grid_remove()
 rect_color_menu.grid_remove()
 
-# Checkbox and options for Triangle
+# Checkbox ของ Triangle
 tri_checkbox = tk.Checkbutton(settings_frame, text="Right Triangle", variable=tri_var, command=lambda: toggle_option_menu("Triangle"))
 tri_checkbox.grid(row=2, column=0, sticky="w", padx=5, pady=5)
 tri_size_menu = tk.OptionMenu(settings_frame, tri_size, "50x50", "100x50", "50x100")
@@ -135,7 +134,7 @@ tri_color_menu.grid(row=2, column=2, padx=5, pady=5)
 tri_size_menu.grid_remove()
 tri_color_menu.grid_remove()
 
-# Checkbox and options for Circle
+# Checkbox ของ Circle
 circ_checkbox = tk.Checkbutton(settings_frame, text="Circle", variable=circ_var, command=lambda: toggle_option_menu("Circle"))
 circ_checkbox.grid(row=3, column=0, sticky="w", padx=5, pady=5)
 circ_size_menu = tk.OptionMenu(settings_frame, circ_size, "Radius=25", "Radius=50", "Radius=75")
