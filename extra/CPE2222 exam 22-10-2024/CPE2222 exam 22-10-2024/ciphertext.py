@@ -1,0 +1,1 @@
+data = ['Bjjxkrbi', 'QXULMNQFT', 'whaypjr', 'OVYYL', 'Axuhqd', 'xirs']
