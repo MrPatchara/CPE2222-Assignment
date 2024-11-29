@@ -20,11 +20,8 @@ for i in range(1, 6):
 x = np.mean(D, axis=1)  # (5, 100)
 x = x.T  # Transpose X (100, 5)
 
-# ดึงเส้นทแยงและคำนวณ std
-diagonal_std = np.array([np.std(np.diagonal(D[i])) for i in range(D.shape[0])])
-
-# reshape เป็น (100, 1)
-y = diagonal_std.reshape(-1, 1)
+# หาค่า y โดย หา std ของ D แล้ว reshape ใหม่เป็น (100, 1)
+y = np.std(D, axis=(0, 2)).reshape(100, 1)
 
 
 # คำนวณ A เป็นผลรวมของ D ตามแกนที่ 1 และ 2
@@ -44,6 +41,7 @@ print("#" * 80)
 print(" Check! >- D, X , Y , A -< Shape")
 print("-" * 80)
 print("D shape:", D.shape)  # ควรเป็น (5, 100, 100)
+
 print("X shape:", x.shape)  # ควรเป็น (5, 100)
 print("Y shape:", y.shape)  # ควรเป็น (100, 1)
 print("A shape:", a.shape)  # ควรเป็น (1, 5)
@@ -59,4 +57,4 @@ print("y[-1,0] =", y[-1, 0], "\n")
 print("A =", a, "\n")
 #print("J =", J, "\n")
 #print("K =", K, "\n")
-print(y)
+#print(y)
