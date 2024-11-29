@@ -1,3 +1,5 @@
+# 6. เกมส์การต่อคำ (Scrabble Game) คือเกมส์ที่นับคะแนนจากการสร้างคำบนกระดานขนาด 15x15 ช่อง โดยใช้ตัวอักษรภาษาอังกฤษซึ่งแต่ละตัวอักษรจะมีจำนวนและคะแนนของตัวอักษรแตกต่างกัน ดังแสดงในโครงสร้างข้อมูลแบบรายการ (List) ต่อไปนี้
+
 # สร้างตัวแปร scrabble
 scrabble = [
     'a', 1, 9, 4.8, 'b', 3, 2, 3.2, 'c', 3, 2, 3.2, 'd', 2, 4, 4.3, 'e', 1, 12, 6.4,
@@ -12,59 +14,74 @@ scrabble = [
 scrabble_dict = {}
 for i in range(0, len(scrabble), 4):
     letter = scrabble[i]
-    point = scrabble[i+1]
-    amount = scrabble[i+2]
-    scrabble_dict[letter] = {'score': point, 'amount': amount}
+    score = scrabble[i + 1]
+    amount = scrabble[i + 2]
+    scrabble_dict[letter] = {'score': score, 'amount': amount}
 
 # แสดงผลพจนานุกรม
 print("1) Scrabble List-to-Dictionary Conversion:")
-print("--------------------------------------------------------------")
+print("-"*95)
 print(scrabble_dict)
-print("==============================================================\n")
+print("="*95)
 
 # รับคำจากผู้ใช้
 print("2) Score of your word")
-print("--------------------------------------------------------------")
+print("-"*95)
 word = input("Enter Your Word [Only alphabets]: ").strip().lower()
 
-# ตรวจสอบว่าเป็นตัวอักษรภาษาอังกฤษเท่านั้น
+# ตรวจสอบคำที่ป้อนว่ามีแต่ตัวอักษรภาษาอังกฤษหรือไม่
 if not word.isalpha():
     print("Invalid input. Please enter only letters.")
+    
 else:
-    # คำนวณคะแนนรวม
+    # คำนวณคะแนนรวมและอัปเดตจำนวนตัวอักษร
     total_score = 0
-    temp_dict = scrabble_dict.copy()  # สำเนาพจนานุกรมเพื่อลดจำนวนตัวอักษรในกรณีที่ถูกใช้
-    valid = True
+    used_letters = {}
 
-    # ตรวจสอบและคำนวณคะแนน
+    # ตรวจสอบและคำนวณคะแนนรวม พร้อมนับตัวอักษรที่ใช้ในคำ
     for char in word:
-        if char in temp_dict and temp_dict[char]['amount'] > 0:
-            total_score += temp_dict[char]['score']
-            temp_dict[char]['amount'] -= 1
+        if char in scrabble_dict:
+            # ตรวจสอบว่าในพจนานุกรมมีตัวอักษรพอหรือไม่
+            if scrabble_dict[char]['amount'] > 0:
+                total_score += scrabble_dict[char]['score']
+                # นับจำนวนตัวอักษรที่ใช้ในคำ
+                if char in used_letters:
+                    used_letters[char] += 1
+                else:
+                    used_letters[char] = 1
+            else:
+                print(f"The letter '{char}' is not available enough in the dictionary.")
+                break
         else:
-            valid = False
+            print(f"The letter '{char}' is not in the dictionary.")
             break
-
-    if valid:
-        print(f"Total score of \"{word}\" is {total_score}")
-
-        # ปรับปรุงพจนานุกรมให้เหลือเฉพาะตัวอักษรที่ใช้ในคำที่ป้อน
-        print("\n3) Updated Scrabble Dictionary")
-        print("--------------------------------------------------------------")
-
-        # สร้างพจนานุกรมที่อัปเดต โดยหักจำนวนที่ใช้จากคำ
-        updated_dict = {}
-        for char in set(word):  # ใช้ set เพื่อไม่ให้ตัวอักษรซ้ำ
-            if char in scrabble_dict:
-                used_count = word.count(char)  # จำนวนที่ใช้ในคำ
-                updated_dict[char] = {
-                    'score': scrabble_dict[char]['score'],
-                    'amount': scrabble_dict[char]['amount'] - used_count  # หักจำนวนที่ใช้
-                }
-
-        # เรียงลำดับพจนานุกรมตามตัวอักษร
-        sorted_updated_dict = dict(sorted(updated_dict.items()))
-
-        print(sorted_updated_dict)
     else:
-        print(f"The word \"{word}\" cannot be formed due to insufficient letters.")
+        # ตรวจสอบว่าตัวอักษรที่ใช้ในคำเกินจำนวนที่มีในพจนานุกรมหรือไม่
+        for char in used_letters:
+            if used_letters[char] > scrabble_dict[char]['amount']:
+                print(f"Your word '{word}' is not possible. The letter '{char}' is not enough")
+                print("="*95,"\n")
+                break
+        else:
+            print(f"Total score of \"{word}\" is {total_score}")
+
+            # ปรับปรุงพจนานุกรมให้เหลือเฉพาะตัวอักษรที่ใช้ในคำที่ป้อน
+            print("="*95)
+            print("3) Updated Scrabble Dictionary")
+            updated_dict = {}
+
+            # ปรับพจนานุกรมให้แสดงเฉพาะตัวอักษรที่ใช้ในคำ
+            for char in used_letters:
+                if char in scrabble_dict:
+                    updated_dict[char] = {
+                        'score': scrabble_dict[char]['score'],
+                        'amount': scrabble_dict[char]['amount'] - used_letters[char]
+                    }
+
+            # เรียงลำดับตามตัวอักษร a-z
+            sorted_updated_dict = dict(sorted(updated_dict.items()))
+
+            # แสดง Scrabble Dictionary ที่อัปเดตแล้ว
+            print("Updated Scrabble Dictionary:")
+            print(sorted_updated_dict)
+            print("="*95,"\n")

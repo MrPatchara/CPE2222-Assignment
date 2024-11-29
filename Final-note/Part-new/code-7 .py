@@ -35,4 +35,4 @@ integer_digits, decimal_digits = count_digits(number)
 
 # แสดงผล
 print(f"Integer digit: {integer_digits}")
-print(f"Decimal digit: {decimal_digits}")
+print(f"Decimal digit: {decimal_digits}\n")

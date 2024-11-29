@@ -1,35 +1,30 @@
-def generate_pyramid(degree):
-    # กรณี Degree 0 มีเพียง 1 ค่า
-    if degree == 0:
-        return [1]
-    
-    # เริ่มต้นจาก Degree 0 ซึ่งมีค่า [1]
-    pyramid = [[1]]  
+#2.พิจารณาสามเหลี่ยม
+
+def generate_triangle(degree):
+    # สร้างสามเหลี่ยมเริ่มต้น
+    triangle = [[1]]  # Degree 0
     
     for d in range(1, degree + 1):
-        prev_row = pyramid[-1]  # แถวก่อนหน้า
-        row = [1]  # เริ่มแถวใหม่ด้วย 1
+        row = [1]  # ค่าแรกในแถวคือ 1
+        prev_row = triangle[d - 1]  # แถวก่อนหน้า
         
-        # คำนวณความแตกต่าง (difference) จากแถวก่อนหน้า
-        if len(prev_row) > 1:
-            differences = [prev_row[i+1] - prev_row[i] for i in range(len(prev_row) - 1)]
+        # คำนวณค่ากลาง
+        for i in range(1, d):
+            # คำนวณค่ากลางตามสูตรใหม่
+            middle_value = (prev_row[i - 1] + prev_row[i]) * 2 - prev_row[i - 1]
+            row.append(middle_value)
         
-            # เติมค่าตามความแตกต่าง
-            for diff in differences:
-                row.append(row[-1] + diff)  # คำนวณค่าใหม่
-
-        # สำหรับ Degree 1 ขึ้นไป ให้เพิ่มค่าใหม่ที่เป็นตัวสุดท้าย
-        if len(row) > 1:
-            last_diff = row[-1] - row[-2]
-            row.append(row[-1] + last_diff)
-        
-        pyramid.append(row)  # เพิ่มแถวใหม่ในพีระมิด
+        # ค่าสุดท้ายในแถวคือ 3^d
+        row.append(3 ** d)
+        triangle.append(row)
     
-    return pyramid[degree]  # คืนค่าแถวที่ต้องการ
+    return triangle
 
 # รับค่า Degree จากผู้ใช้
-degree = int(input("กรุณาใส่ค่า Degree (0 ขึ้นไป): "))
-coefficients = generate_pyramid(degree)
+degree = int(input("Enter the degree of triangle: "))
+
+# สร้างรายการสัมประสิทธิ์
+triangle = generate_triangle(degree)
 
 # แสดงผลลัพธ์
-print(f"Degree {degree}: {coefficients}")
+print(f"{triangle[degree]}\n")
