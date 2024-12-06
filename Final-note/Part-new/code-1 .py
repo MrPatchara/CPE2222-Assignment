@@ -27,4 +27,4 @@ while True:
                 print(' ' * (lines - i) + '*' + ' ' * (2 * (i - 1) - 1) + '*')
 
     except ValueError:
-        print("กรุณาใส่ตัวเลขเท่านั้น!")
+        print("Only number only!")
