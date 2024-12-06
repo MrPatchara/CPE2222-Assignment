@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../../6651630078/code_library"
+		},
+		{
+			"path": "../../assembly"
+		},
+		{
+			"path": "../../Code"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"CodeGPT.apiKey": "CodeGPT Plus Beta",
+		"liveServer.settings.multiRootWorkspaceName": "assembly"
+	}
+}
